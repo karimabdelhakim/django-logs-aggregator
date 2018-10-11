@@ -13,8 +13,7 @@ $ <code>python manage.py migrate</code>
 $ <code>python manage.py runserver</code>  
 ## Usage
 go to  <link>http://127.0.0.1:8000/</link>  
-Register and login then you will be redirected to logs view  
-to view logs per server name   <link>http://127.0.0.1:8000/logs/server_name/</link>  
+Register and login then you will be redirected to all logs view where you can search by server name  
 get a token  
 $ <code>curl -X POST http://localhost:8000/api/auth/token/ -H 'content-type: application/json' -d '{"username": "myusername","password": "mypass"}'</code>  
 example response: <code>{"token":"<token_value>"}</code>  
@@ -23,4 +22,4 @@ $ <code>curl -X POST http://localhost:8000/api/logs/create/ -H 'authorization: J
 "type":must be "info", "warning" or "error" (required)  
 "message": log message (required)  
 "text": extra text (optional)  
- "server_name":required
+"server_name":required
