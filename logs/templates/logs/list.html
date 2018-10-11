@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Logs</h1>
+
+    {% if object_list.exists %}
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Message</th>
+                <th>Text</th>
+                <th>Timestamp</th>
+            </tr>
+            {% for log in object_list %}
+                <tr>
+                    <td>{{ log.type }}</td>
+                    <td>{{ log.message }}</td>
+                    <td class="log-text">
+                        {%if log.text%}
+                            {{ log.text }}
+                        {%endif%}
+                    </td>
+                    <td>
+                        {{ log.timestamp|date:"D d M Y" }} {{ log.timestamp|time:"H:i" }}
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {%else%}
+        No Logs yet
+    {% endif %}
+
+   
+{% endblock %}
