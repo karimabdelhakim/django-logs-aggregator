@@ -41,6 +41,12 @@
         .navbar .active {
             background-color: #4CAF50;
         }
+        .navbar li form {
+            display: block;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
         .log-text{
             word-break: break-word;
         }
@@ -62,8 +68,10 @@
             <li><a href="{% url 'accounts:register' %}">Register</a></li>
         {%else%}
             <li><a class="home" href="{% url 'logs:list' %}">Logs aggregator</a></li>
+            <li>
+                {% include 'snippets/search-form.html' %}
+            </li>
             <li style="float:right"><a class="active" href="{% url 'accounts:logout' %}">Logout</a></li>
-
             <li style="float:right"><span>{{request.user.username}}</span></li>
         {%endif%}
     </ul>

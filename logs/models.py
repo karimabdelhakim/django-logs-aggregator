@@ -24,7 +24,7 @@ class Log(models.Model):
     type = models.CharField(max_length=10, choices=LOG_TYPES)
     message = models.CharField(max_length=200)
     text = models.TextField(blank=True, null=True)
-    server_name = models.SlugField(max_length=50)
+    server_name = models.CharField(max_length=50)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     objects = LogManager()
