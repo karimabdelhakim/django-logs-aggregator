@@ -2,11 +2,17 @@
 
 {% block content %}
 
-    <h1>Logs</h1>
 
     {% if object_list.exists %}
+        {% if server_name %}
+            <h1>"{{server_name}}" Server Logs</h1>
+        {%else%}
+            <h1>All Logs</h1>
+        {%endif%}
+
         <table>
             <tr>
+                <th>Server Name</th>
                 <th>Type</th>
                 <th>Message</th>
                 <th>Text</th>
@@ -14,6 +20,11 @@
             </tr>
             {% for log in object_list %}
                 <tr>
+                    <td>
+                        {%if log.server_name %}
+                            {{ log.server_name }}
+                        {%endif%}
+                    </td>
                     <td>{{ log.type }}</td>
                     <td>{{ log.message }}</td>
                     <td class="log-text">
@@ -47,7 +58,12 @@
             </span>
         </div>
     {%else%}
-        No Logs yet
+       
+        {% if server_name %}
+            <h1>"{{server_name}}" server deosn't exist</h1>
+        {%else%}
+            <h1>No Logs yet</h1>
+        {%endif%}
     {% endif %}
 
    

@@ -3,26 +3,26 @@
 
 <head>
     <style>
-        ul {
+        .navbar {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
             background-color: #333;
         }
-
-        li {
+        
+        .navbar li {
             float: left;
         }
 
-        li a {
+        .navbar li a {
             display: block;
             color: white;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
-        li span {
+        .navbar li span {
             display: block;
             color: burlywood;
             text-align: center;
@@ -30,11 +30,19 @@
             text-decoration: none;
         }
 
-        li a:hover:not(.active) {
+        .navbar li .home {
+            display: block;
+            color: burlywood !important;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar li a:hover:not(.active) {
             background-color: #111;
         }
 
-        .active {
+        .navbar .active {
             background-color: #4CAF50;
         }
         .log-text{
@@ -51,12 +59,13 @@
 
 <body>
 
-    <ul>
-        <li><span>Logs aggregator</span></li>
+    <ul class="navbar">
         {% if not request.user.is_authenticated %}
+            <li><span>Logs aggregator</span></li>
             <li><a href="{% url 'accounts:login' %}">Login</a></li>
             <li><a href="{% url 'accounts:register' %}">Register</a></li>
         {%else%}
+            <li><a class="home" href="{% url 'logs:list' %}">Logs aggregator</a></li>
             <li style="float:right"><a class="active" href="{% url 'accounts:logout' %}">Logout</a></li>
 
             <li style="float:right"><span>{{request.user.username}}</span></li>
